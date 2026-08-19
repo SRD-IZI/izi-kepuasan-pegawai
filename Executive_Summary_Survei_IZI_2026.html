@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="Executive Summary Survei Kepuasan & Employee Experience Pegawai LAZNAS IZI 2026 — Divisi SRD">
+<title>Executive Summary — Survei Kepuasan Pegawai LAZNAS IZI 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+/* ===== RESET & BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#F0F4F9;color:#1A2741;font-size:15px;line-height:1.7}
+img{max-width:100%;height:auto}
+
+/* ===== COVER ===== */
+.cover{background:linear-gradient(150deg,#0D2238 0%,#1B3A5C 55%,#24527A 100%);color:#fff;padding:48px 56px 44px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:rgba(201,146,46,.10);pointer-events:none}
+.cover::after{content:'';position:absolute;bottom:-100px;left:-50px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.035);pointer-events:none}
+.cover-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.cover-logo{height:52px;object-fit:contain;filter:brightness(0) invert(1);opacity:.92;flex-shrink:0}
+.cover-org{font-size:11px;color:rgba(255,255,255,.55);text-align:right;line-height:1.7}
+.cover-tag{display:inline-block;background:#C9922E;color:#fff;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:18px}
+.cover h1{font-size:30px;font-weight:700;line-height:1.25;margin-bottom:10px}
+.cover h1 span{color:#F5C87B}
+.cover .sub{font-size:14.5px;opacity:.8;margin-bottom:32px;max-width:640px;line-height:1.65}
+.cover-kpis{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+.cover-kpi{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);border-radius:10px;padding:14px 18px;min-width:130px;text-align:center;flex:1}
+.ck-unit{font-size:10.5px;color:rgba(255,255,255,.60);margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+.ck-val{font-size:26px;font-weight:700;color:#F5C87B;line-height:1.05}
+.ck-label{font-size:11px;color:rgba(255,255,255,.80);margin-top:3px}
+.cover-meta{font-size:11.5px;opacity:.6;border-top:1px solid rgba(255,255,255,.15);padding-top:14px;display:flex;gap:20px;flex-wrap:wrap}
+.cover-meta span::before{content:'▪ ';color:#C9922E}
+
+/* ===== MAIN LAYOUT ===== */
+.main{max-width:1000px;margin:0 auto;padding:36px 24px}
+.sec{margin-bottom:48px}
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:10px;border-bottom:2px solid #E4EAF2}
+.sec-num{width:34px;height:34px;border-radius:50%;background:#1B3A5C;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-size:18px;font-weight:700;color:#1B3A5C}
+.sec-desc{font-size:13px;color:#9AACBF;margin-top:2px}
+
+/* ===== CARDS ===== */
+.card{background:#fff;border-radius:12px;padding:22px 24px;border:1px solid #E4EAF2}
+.card h3{font-size:14.5px;font-weight:600;color:#1A2741;margin-bottom:4px}
+.card p.sub{font-size:12px;color:#9AACBF;margin-bottom:16px}
+
+/* ===== SECTION 1: DEMOGRAFI ===== */
+.demo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.demo-card{background:#fff;border-radius:12px;padding:16px 12px;border:1px solid #E4EAF2;text-align:center}
+.demo-card h4{font-size:11.5px;font-weight:600;color:#7A8BA8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.demo-chart-wrap{width:100px;height:100px;margin:0 auto}
+.demo-legend{margin-top:10px;font-size:11px;text-align:left}
+.demo-legend div{display:flex;align-items:center;gap:6px;padding:2px 0;color:#3A4A5C}
+.dleg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dleg-pct{margin-left:auto;font-weight:700;color:#1B3A5C;min-width:32px;text-align:right}
+.demo-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.demo-stat{padding:12px 16px;background:#fff;border-radius:10px;border:1px solid #E4EAF2}
+.ds-val{font-size:24px;font-weight:700;color:#1B3A5C;line-height:1}
+.ds-label{font-size:12px;color:#7A8BA8;margin-top:4px}
+.ds-sub{font-size:11px;color:#9AACBF;margin-top:2px}
+.demo-note{margin-top:14px;background:#fff;border-radius:10px;padding:16px 20px;border:1px solid #E4EAF2;font-size:13px;color:#3A4A5C;line-height:1.8}
+
+/* ===== SECTION 2: EEI ===== */
+.eei-row{display:grid;grid-template-columns:270px 1fr;gap:20px;align-items:start}
+.eei-gauge{background:#fff;border-radius:12px;padding:24px 18px;border:1px solid #E4EAF2;text-align:center}
+.eei-score{font-size:48px;font-weight:700;color:#1B3A5C;line-height:1;margin:6px 0 2px}
+.eei-score span{font-size:18px;color:#9AACBF;font-weight:400}
+.eei-pct{font-size:22px;font-weight:700;color:#C9922E;margin-bottom:4px}
+.eei-cat{font-size:12.5px;color:#7A8BA8;margin-bottom:12px;line-height:1.5}
+.eei-cat strong{color:#D97A1A}
+.scale-legend{font-size:11px;color:#7A8BA8;text-align:left;margin-top:14px}
+.scale-legend div{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.sl-sq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.loc-box{margin-top:16px}
+.loc-box .lb-title{font-size:10.5px;font-weight:700;color:#7A8BA8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.loc-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;margin-bottom:6px;font-size:12px}
+.loc-item:last-child{margin-bottom:0}
+.loc-overall{background:#EAF2FD;border:1px solid #C5D8F0}
+.loc-perw{background:#D5F0E3;border:1px solid #A8D8C0}
+.loc-pusat{background:#FDEDEC;border:1px solid #F0C5C0}
+.li-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.li-label{flex:1;color:#3A4A5C;font-weight:500}
+.li-val{font-weight:700;color:#1B3A5C;white-space:nowrap;font-size:11.5px}
+.eei-chart-box{background:#fff;border-radius:12px;padding:22px;border:1px solid #E4EAF2}
+.eei-chart-box h3{font-size:14.5px;font-weight:600;margin-bottom:4px}
+.eei-chart-box p{font-size:12px;color:#9AACBF;margin-bottom:14px}
+.eei-zone-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.zone-box{padding:12px 14px;border-radius:8px;border-left:3px solid;font-size:12px;line-height:1.5}
+
+/* ===== SECTION 3: TREN ===== */
+.trend-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.trend-card{background:#F8FAFC;border-radius:10px;padding:14px;text-align:center;border:1px solid #E4EAF2}
+.tc-year{font-size:11px;color:#9AACBF;margin-bottom:4px}
+.tc-score{font-size:26px;font-weight:700;color:#1B3A5C;line-height:1}
+.tc-pct{font-size:17px;font-weight:700;color:#C9922E}
+.tc-delta{font-size:11px;color:#CC3A3A;margin-top:3px}
+.trend-note{background:#FEF5E7;border:1px solid #F0D5A0;border-radius:8px;padding:12px 16px;font-size:12px;color:#935116;margin-top:12px;line-height:1.65}
+
+/* ===== SECTION 4: KOMPARATIF ===== */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.comp-card{background:#fff;border-radius:12px;padding:20px;border:1px solid #E4EAF2}
+.comp-card h4{font-size:14px;font-weight:600;color:#1A2741;margin-bottom:4px}
+.comp-card .sub{font-size:11.5px;color:#9AACBF;margin-bottom:14px}
+.comp-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #F5F7FA}
+.comp-item:last-of-type{border-bottom:none}
+.ci-label{flex:1;font-size:12px;color:#3A4A5C}
+.ci-bar{width:70px;height:7px;background:#F0F4F9;border-radius:4px;overflow:hidden;flex-shrink:0}
+.ci-fill{height:100%;border-radius:4px}
+.ci-score{font-size:11.5px;font-weight:700;min-width:80px;text-align:right;white-space:nowrap}
+.comp-insight{background:#F4F8FF;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:12px;color:#3A4A5C;line-height:1.65;border-left:3px solid #2A78D6}
+.comp-highlight{padding:8px 12px;border-radius:6px;margin-bottom:6px;font-size:12px;line-height:1.5}
+.comp-charts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+.comp-chart-box{background:#fff;border-radius:12px;padding:16px;border:1px solid #E4EAF2}
+.comp-chart-box h4{font-size:13px;font-weight:600;color:#1A2741;margin-bottom:3px}
+.comp-chart-box p{font-size:11px;color:#9AACBF;margin-bottom:10px}
+
+/* ===== SECTION 5: HEATMAP ===== */
+.heat-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px;margin-top:12px}
+.heat-table{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;min-width:700px}
+.heat-table th{background:#F0F4F9;color:#7A8BA8;font-weight:600;text-align:center;padding:9px 6px;font-size:10px;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+.heat-table th:first-child{text-align:left;padding-left:12px;min-width:185px}
+.heat-table td{padding:7px 5px;text-align:center;border-bottom:1px solid #F5F7FA}
+.heat-table td:first-child{text-align:left;padding-left:12px;font-size:11px;color:#3A4A5C;font-weight:500;max-width:200px}
+.heat-cell{display:inline-block;width:50px;border-radius:5px;padding:4px 0;font-weight:700;font-size:11.5px;text-align:center}
+.hc-high{background:#D5F0E3;color:#1A6B3A}
+.hc-mid{background:#EAF2FD;color:#1B3A7C}
+.hc-low{background:#FEF5E7;color:#935116}
+.hc-crit{background:#FDEDEC;color:#A93226}
+
+/* ===== SECTION 6: INSIGHTS ===== */
+.insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.insight-card{background:#fff;border-radius:12px;padding:20px;border:1px solid #E4EAF2;border-top:4px solid}
+.ic-num{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px}
+.insight-card h4{font-size:15px;font-weight:700;color:#1A2741;margin-bottom:8px;line-height:1.3}
+.insight-card p{font-size:12.5px;color:#5A6A7A;line-height:1.65;margin-bottom:10px}
+.ic-data{background:#F8FAFC;border-radius:6px;padding:10px 12px;font-size:12px;color:#3A4A5C;line-height:1.65}
+.insight-seg{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.seg-tag{font-size:10.5px;padding:3px 10px;border-radius:10px;font-weight:600}
+
+/* ===== SECTION 7: TRIANGULASI ===== */
+.tri-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px;margin-top:8px}
+.tri-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:680px}
+.tri-table th{background:#1B3A5C;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.tri-table td{padding:10px 12px;border-bottom:1px solid #F0F4F9;vertical-align:middle;line-height:1.4}
+.tri-table tr:hover td{background:#FAFBFC}
+.status-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:10.5px;font-weight:700;white-space:nowrap}
+.st-urgent{background:#FDEDEC;color:#A93226}
+.st-fix{background:#FEF5E7;color:#935116}
+.st-keep{background:#D5F0E3;color:#1A6B3A}
+.st-watch{background:#EAF2FD;color:#1B3A7C}
+
+/* ===== SECTION 8: PRIORITY MATRIX ===== */
+.matrix-card{background:#fff;border-radius:12px;padding:22px;border:1px solid #E4EAF2}
+.quadrant-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.quad-box{border-radius:10px;padding:18px;border-top:3px solid}
+.quad-box .qb-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.quad-box ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.quad-box ul li{font-size:12px;color:#3A4A5C;display:flex;gap:7px;line-height:1.5}
+.quad-box ul li span:first-child{flex-shrink:0;margin-top:1px}
+
+/* ===== SECTION 9: REKOMENDASI ===== */
+.reko-list{display:flex;flex-direction:column;gap:16px}
+.reko-card{background:#fff;border-radius:12px;padding:22px;border:1px solid #E4EAF2;display:flex;gap:18px;align-items:flex-start}
+.reko-num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
+.reko-body{flex:1;min-width:0}
+.reko-body h4{font-size:15px;font-weight:700;color:#1A2741;margin-bottom:6px}
+.reko-time{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px;margin-bottom:10px}
+.reko-body p{font-size:13px;color:#5A6A7A;line-height:1.65;margin-bottom:10px}
+.reko-body ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.reko-body ul li{font-size:12.5px;color:#3A4A5C;padding-left:18px;position:relative;line-height:1.55}
+.reko-body ul li::before{content:'→';position:absolute;left:0;color:#9AACBF;font-size:12px;top:1px}
+.reko-evidence{font-size:11.5px;background:#F8FAFC;border-radius:6px;padding:8px 12px;color:#7A8BA8;border-left:3px solid #E4EAF2;line-height:1.6}
+
+/* ===== NARRATIVE BOX ===== */
+.narrative{background:#F4F8FF;border-radius:10px;padding:20px 24px;margin-top:16px;border-left:4px solid #2A78D6}
+.narrative h4{font-size:14px;font-weight:600;color:#1B3A5C;margin-bottom:8px}
+.narrative p{font-size:13px;color:#3A4A5C;line-height:1.75}
+
+/* ===== FOOTER ===== */
+footer{background:#1B3A5C;color:rgba(255,255,255,.55);padding:20px 40px;font-size:12px;margin-top:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+footer strong{color:rgba(255,255,255,.9)}
+
+/* ===== RESPONSIVE: TABLET (max 1024px) ===== */
+@media (max-width:1024px){
+  .cover{padding:40px 36px 36px}
+  .demo-grid{grid-template-columns:repeat(3,1fr)}
+  .eei-row{grid-template-columns:240px 1fr}
+  .comp-grid{grid-template-columns:repeat(2,1fr)}
+  .comp-charts{grid-template-columns:repeat(2,1fr)}
+  .eei-zone-summary{grid-template-columns:1fr}
+  .trend-cards{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ===== RESPONSIVE: MOBILE (max 768px) ===== */
+@media (max-width:768px){
+  body{font-size:14px}
+  .cover{padding:28px 20px 26px}
+  .cover h1{font-size:22px}
+  .cover .sub{font-size:13.5px;margin-bottom:24px}
+  .cover-logo{height:40px}
+  .cover-org{display:none}
+  .cover-kpis{gap:8px}
+  .cover-kpi{min-width:calc(50% - 4px);flex:none;padding:12px 10px}
+  .ck-val{font-size:22px}
+  .cover-meta{flex-direction:column;gap:4px;font-size:11px}
+  .main{padding:24px 16px}
+  .sec{margin-bottom:36px}
+  .sec-title{font-size:16px}
+  .sec-desc{font-size:12px}
+  .demo-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .demo-stats{grid-template-columns:1fr}
+  .eei-row{grid-template-columns:1fr}
+  .eei-chart-box{margin-top:0}
+  .eei-zone-summary{grid-template-columns:1fr;gap:8px}
+  .trend-cards{grid-template-columns:1fr;gap:8px}
+  .comp-grid{grid-template-columns:1fr}
+  .comp-charts{grid-template-columns:1fr}
+  .insights-grid{grid-template-columns:1fr}
+  .quadrant-grid{grid-template-columns:1fr}
+  .reko-card{flex-direction:column;gap:12px;padding:18px}
+  .reko-num{width:36px;height:36px;font-size:15px}
+  footer{flex-direction:column;text-align:center;padding:16px 20px;gap:8px}
+  .cover-tag{font-size:10px;padding:4px 12px}
+}
+
+/* ===== RESPONSIVE: SMALL MOBILE (max 480px) ===== */
+@media (max-width:480px){
+  .cover{padding:24px 16px 22px}
+  .cover h1{font-size:19px}
+  .cover-kpi{min-width:100%;text-align:left;display:flex;align-items:center;gap:12px;padding:10px 14px}
+  .ck-val{font-size:20px}
+  .demo-grid{grid-template-columns:1fr 1fr}
+  .main{padding:20px 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-topbar">
+    <img src="data:image/png;base64,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" alt="Logo LAZNAS IZI" class="cover-logo">
+    <div class="cover-org">Divisi SRD — System, Research &amp; Development<br>LAZNAS IZI · 2026</div>
+  </div>
+  <div class="cover-tag">Executive Summary · Konfidensial</div>
+  <h1>Survei Kepuasan &amp; <span>Employee Experience</span><br>Pegawai LAZNAS IZI 2026</h1>
+  <p class="sub">Laporan ini merangkum kondisi kepuasan pegawai berdasarkan survei komprehensif yang mencakup 12 variabel employee experience, triangulasi data kualitatif, dan analisis komparatif lintas segmen. Ditujukan untuk mendukung pengambilan keputusan strategis oleh manajemen LAZNAS IZI.</p>
+  <div class="cover-kpis">
+    <div class="cover-kpi"><div class="ck-unit">Responden Valid</div><div class="ck-val">205</div><div class="ck-label">N = 205 Responden</div></div>
+    <div class="cover-kpi"><div class="ck-unit">Employee Experience Index</div><div class="ck-val">2,93</div><div class="ck-label">73,25% · Skala 1–4</div></div>
+    <div class="cover-kpi"><div class="ck-unit">Skor Tertinggi</div><div class="ck-val">3,21</div><div class="ck-label">Akuntabilitas &amp; Misi</div></div>
+    <div class="cover-kpi"><div class="ck-unit">Skor Terendah</div><div class="ck-val">2,64</div><div class="ck-label">Keamanan Psikologis</div></div>
+    <div class="cover-kpi"><div class="ck-unit">Burnout Rate</div><div class="ck-val">43%</div><div class="ck-label">Pegawai terdampak</div></div>
+  </div>
+  <div class="cover-meta">
+    <span>Periode Survei: Juli–Agustus 2026</span>
+    <span>©2026 Divisi SRD (System, Research &amp; Development) LAZNAS IZI</span>
+    <span>Metode: Likert 4 poin + Open-ended triangulasi</span>
+    <span>Analisis: Mixed Methods (Kuantitatif &amp; Kualitatif)</span>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ===== S1: PROFIL RESPONDEN ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div><div class="sec-title">Profil Responden</div><div class="sec-desc">Gambaran demografis 205 pegawai yang berpartisipasi dalam survei</div></div>
+  </div>
+  <div class="demo-grid">
+    <div class="demo-card"><h4>Jenis Kelamin</h4><div class="demo-chart-wrap"><canvas id="genderChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Pria (106)<div class="dleg-pct">51,7%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Wanita (99)<div class="dleg-pct">48,3%</div></div></div></div>
+    <div class="demo-card"><h4>Generasi</h4><div class="demo-chart-wrap"><canvas id="genDemoChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Gen Y (110)<div class="dleg-pct">53,7%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Gen Z (77)<div class="dleg-pct">37,6%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>Gen X (18)<div class="dleg-pct">8,8%</div></div></div></div>
+    <div class="demo-card"><h4>Masa Kerja</h4><div class="demo-chart-wrap"><canvas id="tenureDemoChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>&gt;7 Thn (82)<div class="dleg-pct">40,0%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>1–3 Thn (51)<div class="dleg-pct">24,9%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>4–6 Thn (44)<div class="dleg-pct">21,5%</div></div><div><div class="dleg-dot" style="background:#9AACBF"></div>&lt;1 Thn (28)<div class="dleg-pct">13,7%</div></div></div></div>
+    <div class="demo-card"><h4>Lokasi Kantor</h4><div class="demo-chart-wrap"><canvas id="lokasiDemoChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Perwakilan (160)<div class="dleg-pct">78,0%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Pusat (45)<div class="dleg-pct">22,0%</div></div></div></div>
+    <div class="demo-card"><h4>Pendidikan</h4><div class="demo-chart-wrap"><canvas id="eduChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Sarjana (150)<div class="dleg-pct">73,2%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>SMA/SMK (22)<div class="dleg-pct">10,7%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>Magister (17)<div class="dleg-pct">8,3%</div></div><div><div class="dleg-dot" style="background:#9AACBF"></div>Diploma (16)<div class="dleg-pct">7,8%</div></div></div></div>
+  </div>
+  <div class="demo-stats">
+    <div class="demo-stat"><div class="ds-val">87,3%</div><div class="ds-label">Hak pegawai terpenuhi (sebagian besar–seluruhnya)</div><div class="ds-sub">Sudah seluruhnya 36,1% · Sebagian besar 51,2%</div></div>
+    <div class="demo-stat"><div class="ds-val">94,1%</div><div class="ds-label">Kewajiban pegawai dipenuhi (sebagian besar–seluruhnya)</div><div class="ds-sub">Sudah seluruhnya 41,5% · Sebagian besar 52,7%</div></div>
+  </div>
+  <div class="demo-note">Mayoritas responden adalah <strong>pegawai Gen Y laki-laki berpendidikan sarjana di kantor perwakilan dengan masa kerja di atas 7 tahun</strong> — profil tulang punggung operasional IZI. Komposisi gender hampir berimbang (51,7% vs 48,3%) perlu diperhatikan dalam desain kebijakan HR yang inklusif. Dari sisi pemenuhan hak, 12,7% pegawai masih merasa hak-haknya belum atau hanya sebagian kecil terpenuhi — angka yang perlu mendapat perhatian tersendiri.</div>
+</div>
+
+<!-- ===== S2: EEI ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div><div class="sec-title">Employee Experience Index (EEI)</div><div class="sec-desc">Skor kepuasan keseluruhan, breakdown per lokasi, dan 12 variabel resmi · Skala 1–4</div></div>
+  </div>
+  <div class="eei-row">
+    <div class="eei-gauge">
+      <svg width="190" height="108" viewBox="0 0 190 108" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">
+        <path d="M14 96 A81 81 0 0 1 176 96" fill="none" stroke="#E8EDF3" stroke-width="16" stroke-linecap="round"/>
+        <path d="M14 96 A81 81 0 0 1 176 96" fill="none" stroke="#C9922E" stroke-width="16" stroke-linecap="round" stroke-dasharray="254.5" stroke-dashoffset="68.2"/>
+        <text x="16" y="106" font-size="10" fill="#9AACBF" font-family="inherit">1</text>
+        <text x="91" y="18" text-anchor="middle" font-size="10" fill="#9AACBF" font-family="inherit">2,5</text>
+        <text x="175" y="106" font-size="10" fill="#9AACBF" font-family="inherit">4</text>
+      </svg>
+      <div class="eei-score">2,93<span>/4</span></div>
+      <div class="eei-pct">73,25%</div>
+      <div class="eei-cat">Employee Experience Index<br><strong>⚠ Kategori: Perlu Perhatian</strong></div>
+      <div class="scale-legend">
+        <div><div class="sl-sq" style="background:#1A8A52"></div><span style="color:#1A6B3A;font-weight:600">≥ 3,00 (≥75%) — Baik</span></div>
+        <div><div class="sl-sq" style="background:#C9922E"></div><span style="color:#935116;font-weight:600">2,50–2,99 — Perlu Perhatian</span></div>
+        <div><div class="sl-sq" style="background:#CC3A3A"></div><span style="color:#A93226;font-weight:600">&lt; 2,50 — Kritis</span></div>
+      </div>
+      <div class="loc-box">
+        <div class="lb-title">EEI per Lokasi</div>
+        <div class="loc-item loc-overall"><div class="li-dot" style="background:#2A78D6"></div><div class="li-label">Keseluruhan (n=205)</div><div class="li-val">2,93 · 73,25%</div></div>
+        <div class="loc-item loc-perw"><div class="li-dot" style="background:#1A8A52"></div><div class="li-label">Perwakilan (n=160)</div><div class="li-val">2,97 · 74,19%</div></div>
+        <div class="loc-item loc-pusat"><div class="li-dot" style="background:#CC3A3A"></div><div class="li-label">Kantor Pusat (n=45)</div><div class="li-val">2,81 · 70,25%</div></div>
+      </div>
+    </div>
+    <div class="eei-chart-box">
+      <h3>Skor 12 Variabel Employee Experience (Skala 1–4)</h3>
+      <p>Diurutkan tertinggi → terendah &nbsp;·&nbsp; Hijau ≥3,00 · Kuning 2,50–2,99 · Merah &lt;2,50 · Garis = EEI rata-rata (2,93)</p>
+      <div style="position:relative;height:420px"><canvas id="dimBarChart"></canvas></div>
+    </div>
+  </div>
+  <div class="eei-zone-summary">
+    <div class="zone-box" style="background:#D5F0E3;border-color:#1A8A52"><strong style="color:#1A6B3A">4 Variabel Zona Baik (≥3,00)</strong><br><span style="color:#3A6A3A;font-size:12.5px">Akuntabilitas publik (3,21) · Tanggung jawab pekerjaan (3,08) · Hubungan atasan &amp; rekan (3,05) · Kesesuaian nilai &amp; budaya (3,02)</span></div>
+    <div class="zone-box" style="background:#FEF5E7;border-color:#C9922E"><strong style="color:#935116">7 Variabel Perlu Perhatian (2,50–2,99)</strong><br><span style="color:#5A3A1A;font-size:12.5px">Kepemimpinan · Teknologi · Apresiasi · Beban kerja · Keijakan &amp; transparansi · Prestasi &amp; karir · Kompensasi</span></div>
+    <div class="zone-box" style="background:#FDEDEC;border-color:#CC3A3A"><strong style="color:#A93226">1 Variabel Zona Kritis (&lt;2,50)</strong><br><span style="color:#6A2A2A;font-size:12.5px">Keamanan psikologis untuk berpendapat (2,64) — isu struktural merata di semua segmen pegawai</span></div>
+  </div>
+</div>
+
+<!-- ===== S3: TREN ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div><div class="sec-title">Tren Indeks Kepuasan Pegawai 2024–2026</div><div class="sec-desc">Perbandingan lintas tahun dalam persentase sebagai basis yang dapat dibandingkan</div></div>
+  </div>
+  <div class="card">
+    <h3>Tren Persentase Indeks Kepuasan Pegawai (2024–2026)</h3>
+    <p class="sub">2024 &amp; 2025 menggunakan skala Likert 1–5 · 2026 menggunakan skala Likert 1–4 · Persentase sebagai common ground lintas skala</p>
+    <div style="position:relative;height:260px"><canvas id="trendChart"></canvas></div>
+    <div class="trend-cards">
+      <div class="trend-card"><div class="tc-year">2024 · Skala 1–5</div><div class="tc-score">3,83</div><div class="tc-pct">77,11%</div></div>
+      <div class="trend-card"><div class="tc-year">2025 · Skala 1–5</div><div class="tc-score">3,79</div><div class="tc-pct">75,77%</div><div class="tc-delta">▼ 1,34 poin dari 2024</div></div>
+      <div class="trend-card"><div class="tc-year">2026 · Skala 1–4</div><div class="tc-score">2,93</div><div class="tc-pct" style="color:#D97A1A">73,25%</div><div class="tc-delta">▼ 3,86 poin dari 2024</div></div>
+    </div>
+    <div class="trend-note"><strong>⚠ Catatan Metodologi:</strong> Terjadi perubahan skala dari Likert 1–5 (2024–2025) ke 1–4 (2026). Persentase dihitung dari skor/skala_maks×100 untuk tiap tahun. Meski perubahan instrumen perlu dipertimbangkan, arah tren yang menurun konsisten selama 3 tahun perlu mendapat respons strategis dari manajemen.</div>
+  </div>
+  <div class="narrative"><h4>Interpretasi Tren: Sinyal yang Tidak Bisa Diabaikan</h4><p>Dalam tiga tahun terakhir, indeks kepuasan pegawai IZI terus menurun — dari 77,11% (2024) ke 75,77% (2025) dan kini 73,25% (2026). Penurunan kumulatif 3,86 poin persentase dalam dua tahun adalah sinyal awal yang perlu direspons sebelum menembus titik kritis. Tanpa intervensi tepat, tren ini berpotensi berlanjut dan berujung pada peningkatan turnover, penurunan produktivitas, dan kerusakan budaya yang sudah dibangun bertahun-tahun.</p></div>
+</div>
+
+<!-- ===== S4: KOMPARATIF ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div><div class="sec-title">Analisis Komparatif Antar Segmen</div><div class="sec-desc">Perbedaan kepuasan berdasarkan generasi, lokasi kantor, dan masa kerja beserta faktor penyebabnya</div></div>
+  </div>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Per Generasi</h4>
+      <p class="sub">EEI dan pola kepuasan antar kelompok usia</p>
+      <div class="comp-item"><div class="ci-label">Gen X (n=18)</div><div class="ci-bar"><div class="ci-fill" style="width:77%;background:#1A8A52"></div></div><div class="ci-score" style="color:#1A8A52">3,08 · 76,96%</div></div>
+      <div class="comp-item"><div class="ci-label">Gen Z (n=77)</div><div class="ci-bar"><div class="ci-fill" style="width:73.4%;background:#C9922E"></div></div><div class="ci-score" style="color:#C9922E">2,94 · 73,44%</div></div>
+      <div class="comp-item"><div class="ci-label">Gen Y (n=110)</div><div class="ci-bar"><div class="ci-fill" style="width:72.6%;background:#D97A1A"></div></div><div class="ci-score" style="color:#D97A1A">2,91 · 72,63%</div></div>
+      <div class="comp-insight"><strong>Faktor penentu:</strong> Gen X paling puas karena sudah mapan secara karir, lebih realistis soal ekspektasi, dan memiliki kepercayaan lebih tinggi ke leadership (3,26). Gen Y paling tertekan — sebagai kelompok terbesar (53,7%), menanggung beban kerja paling berat sambil masih mengejar kepastian karir. Gen Z relatif positif soal teknologi (3,00) namun paling kritis soal kompensasi (2,69).</div>
+    </div>
+    <div class="comp-card">
+      <h4>Per Lokasi Kantor</h4>
+      <p class="sub">Gap signifikan antara Pusat dan Perwakilan</p>
+      <div class="comp-item"><div class="ci-label">Perwakilan (n=160)</div><div class="ci-bar"><div class="ci-fill" style="width:74.2%;background:#1A8A52"></div></div><div class="ci-score" style="color:#1A8A52">2,97 · 74,19%</div></div>
+      <div class="comp-item"><div class="ci-label">Kantor Pusat (n=45)</div><div class="ci-bar"><div class="ci-fill" style="width:70.3%;background:#CC3A3A"></div></div><div class="ci-score" style="color:#CC3A3A">2,81 · 70,25%</div></div>
+      <div style="height:8px"></div>
+      <div class="comp-highlight" style="background:#FDEDEC;border-left:3px solid #CC3A3A"><strong style="color:#A93226">Keijakan &amp; transparansi:</strong> Pusat 2,50 vs Perwakilan 2,94</div>
+      <div class="comp-highlight" style="background:#FEF5E7;border-left:3px solid #D97A1A"><strong style="color:#935116">Kompensasi dan fasilitas:</strong> Pusat 2,59 vs Perwakilan 2,81</div>
+      <div class="comp-highlight" style="background:#FEF5E7;border-left:3px solid #D97A1A"><strong style="color:#935116">Prestasi dan peluang maju:</strong> Pusat 2,63 vs Perwakilan 2,86</div>
+      <div class="comp-insight"><strong>Faktor penentu:</strong> Kantor Pusat lebih dekat ke sumber kebijakan namun justru paling merasakan ketidakadilan implementasinya. Staf Perwakilan lebih merasakan dampak langsung pekerjaan lapangan, sementara Pusat banyak bergelut dengan administrasi dan birokrasi tanpa kompensasi yang proporsional.</div>
+    </div>
+    <div class="comp-card">
+      <h4>Per Masa Kerja</h4>
+      <p class="sub">Kurva "tenure dip" di kelompok 4–6 tahun</p>
+      <div class="comp-item"><div class="ci-label">1–3 Tahun (n=51)</div><div class="ci-bar"><div class="ci-fill" style="width:75.1%;background:#1A8A52"></div></div><div class="ci-score" style="color:#1A8A52">3,00 · 75,07%</div></div>
+      <div class="comp-item"><div class="ci-label">&lt;1 Tahun (n=28)</div><div class="ci-bar"><div class="ci-fill" style="width:73.6%;background:#2A78D6"></div></div><div class="ci-score" style="color:#2A78D6">2,94 · 73,62%</div></div>
+      <div class="comp-item"><div class="ci-label">&gt;7 Tahun (n=82)</div><div class="ci-bar"><div class="ci-fill" style="width:72.9%;background:#C9922E"></div></div><div class="ci-score" style="color:#C9922E">2,91 · 72,87%</div></div>
+      <div class="comp-item"><div class="ci-label">4–6 Tahun (n=44)</div><div class="ci-bar"><div class="ci-fill" style="width:71.9%;background:#CC3A3A"></div></div><div class="ci-score" style="color:#CC3A3A">2,88 · 71,90%</div></div>
+      <div class="comp-insight"><strong>Faktor penentu:</strong> "Tenure dip" di 4–6 tahun adalah fenomena klasik — pegawai sudah cukup berpengalaman untuk membandingkan kondisi IZI dengan pasar, namun belum cukup senior untuk mempengaruhi keputusan. Prestasi &amp; karir mereka ada di titik terendah (2,70). Pegawai 1–3 tahun masih dalam fase produktif awal. Pegawai &gt;7 tahun sudah berkompromi dengan realita namun tanda kelelahan mulai tampak.</div>
+    </div>
+  </div>
+  <div class="comp-charts">
+    <div class="comp-chart-box"><h4>Per Generasi (%)</h4><p>EEI dalam persentase</p><div style="position:relative;height:200px"><canvas id="genRadar"></canvas></div></div>
+    <div class="comp-chart-box"><h4>Per Lokasi (%)</h4><p>Gap 3,94 poin Pusat vs Perwakilan</p><div style="position:relative;height:200px"><canvas id="lokasiBar"></canvas></div></div>
+    <div class="comp-chart-box"><h4>Per Masa Kerja (%)</h4><p>Tenure dip pada 4–6 tahun</p><div style="position:relative;height:200px"><canvas id="tenureBar"></canvas></div></div>
+  </div>
+  <div class="narrative"><h4>Benang Merah dari Tiga Dimensi Komparatif</h4><p>Ada pola konsisten dari ketiga analisis: <strong>semakin jauh seseorang dari pusat pengambilan keputusan</strong> (hierarki maupun lokasi), <strong>semakin rendah kepuasannya terhadap kebijakan dan kompensasi</strong>. Sebaliknya, kedekatan dengan dampak langsung pekerjaan lapangan mendongkrak kepuasan. Ini mengkonfirmasi bahwa nilai dan misi adalah modal sosial terkuat IZI — namun tidak cukup menahan frustrasi ketika kompensasi dan karir tidak terpenuhi.</p></div>
+</div>
+
+<!-- ===== S5: HEATMAP ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div><div class="sec-title">Heatmap Kepuasan Lintas Variabel &amp; Segmen</div><div class="sec-desc">Distribusi skor 12 variabel pada 9 kelompok segmen pegawai (Skala 1–4)</div></div>
+  </div>
+  <div class="card">
+    <h3>Matriks Skor Kepuasan — 12 Variabel × 9 Segmen Pegawai</h3>
+    <p class="sub" style="margin-bottom:10px">
+      <span style="background:#D5F0E3;color:#1A6B3A;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">≥3,00 Baik</span>&ensp;
+      <span style="background:#EAF2FD;color:#1B3A7C;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">2,75–2,99 Cukup</span>&ensp;
+      <span style="background:#FEF5E7;color:#935116;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">2,50–2,74 Perhatian</span>&ensp;
+      <span style="background:#FDEDEC;color:#A93226;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">&lt;2,50 Kritis</span>
+    </p>
+    <div class="heat-scroll">
+      <table class="heat-table">
+        <thead>
+          <tr>
+            <th>Variabel</th>
+            <th>Perw.<br><small style="font-weight:400">(n=160)</small></th>
+            <th>Pusat<br><small style="font-weight:400">(n=45)</small></th>
+            <th>&lt;1 Thn<br><small style="font-weight:400">(n=28)</small></th>
+            <th>1–3 Thn<br><small style="font-weight:400">(n=51)</small></th>
+            <th>4–6 Thn<br><small style="font-weight:400">(n=44)</small></th>
+            <th>&gt;7 Thn<br><small style="font-weight:400">(n=82)</small></th>
+            <th>Gen X<br><small style="font-weight:400">(n=18)</small></th>
+            <th>Gen Y<br><small style="font-weight:400">(n=110)</small></th>
+            <th>Gen Z<br><small style="font-weight:400">(n=77)</small></th>
+          </tr>
+        </thead>
+        <tbody id="heatBody"></tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px;background:#F8FAFC;border-radius:8px;padding:12px 16px;font-size:12.5px;color:#3A4A5C;line-height:1.65">
+      <strong>Sel kritis yang perlu dicermati:</strong> Keijakan &amp; transparansi di Kantor Pusat (2,50) berada di batas zona kritis. Keamanan psikologis rendah merata di seluruh segmen (2,63–2,69). Kompensasi di Gen Z (2,69) dan Kantor Pusat (2,59) menjadi kombinasi paling berbahaya karena Gen Z adalah masa depan SDM IZI.
+    </div>
+  </div>
+</div>
+
+<!-- ===== S6: KEY INSIGHTS ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div><div class="sec-title">Key Insights &amp; Temuan Strategis</div><div class="sec-desc">Enam temuan utama hasil triangulasi kuantitatif dan kualitatif yang paling berdampak</div></div>
+  </div>
+  <div class="insights-grid">
+    <div class="insight-card" style="border-top-color:#CC3A3A"><div class="ic-num" style="color:#A93226">🔒 Insight 01 — Perhatian Segera</div><h4>Psychological Safety: Isu Struktural yang Merata di Semua Lapisan</h4><p>Keamanan psikologis untuk berpendapat menjadi variabel terendah — bukan masalah satu divisi, melainkan isu merata di seluruh organisasi. Hampir separuh pegawai mengaku tidak berani menyampaikan kritik karena khawatir berdampak negatif.</p><div class="ic-data"><strong>Skor:</strong> 2,64 / 4,00 — terendah dari 12 variabel<br><strong>KPB02 (indikator ragu kritik):</strong> 2,44<br><strong>Gen Y:</strong> 2,63 · <strong>Gen Z:</strong> 2,65 · <strong>Gen X:</strong> 2,69</div><div class="insight-seg"><span class="seg-tag" style="background:#FDEDEC;color:#A93226">49% ragu menyampaikan kritik</span><span class="seg-tag" style="background:#F0F4F9;color:#3A4A5C">Lintas semua generasi</span></div></div>
+    <div class="insight-card" style="border-top-color:#D97A1A"><div class="ic-num" style="color:#935116">💰 Insight 02 — Prioritas Tinggi</div><h4>Kompensasi Tidak Kompetitif: Bom Waktu yang Sudah Lama Berdetak</h4><p>Kompensasi dan fasilitas kerja menjadi variabel terendah kedua sekaligus dimensi paling banyak mendapat demand perbaikan. Banyak laporan konkret tentang gaji di bawah UMR/UMK dan absennya kenaikan gaji dalam 2–3 tahun terakhir.</p><div class="ic-data"><strong>Skor:</strong> 2,76 / 4,00 · <strong>Pain point:</strong> 66 mention · <strong>Improvement:</strong> 88 mention<br><strong>KFK04 (kompensasi kompetitif):</strong> 2,54<br><strong>Kantor Pusat:</strong> 2,59 vs Perwakilan: 2,81</div><div class="insight-seg"><span class="seg-tag" style="background:#FEF5E7;color:#935116">45% nilai tidak kompetitif</span><span class="seg-tag" style="background:#FDEDEC;color:#A93226">Gen Z paling terdampak: 2,69</span></div></div>
+    <div class="insight-card" style="border-top-color:#E67E22"><div class="ic-num" style="color:#935116">🔥 Insight 03 — Prioritas Perbaikan</div><h4>Beban Kerja: Pain Point Terbanyak Disebut (165 Mention)</h4><p>Dengan 165 pain point mention — tertinggi dari semua tema kualitatif — beban kerja adalah masalah yang paling dirasakan dalam keseharian. Diperparah oleh tidak adanya kompensasi lembur layak dan WFH yang dicabut tanpa pengganti.</p><div class="ic-data"><strong>Skor:</strong> 2,87 / 4,00 · <strong>Pain point:</strong> 165 mention (tertinggi)<br><strong>BKM04 (burnout berlebihan):</strong> 2,45 · <strong>Improvement demand:</strong> 56 mention</div><div class="insight-seg"><span class="seg-tag" style="background:#FEF5E7;color:#935116">43% alami burnout</span><span class="seg-tag" style="background:#F0F4F9;color:#3A4A5C">Terutama di Perwakilan</span></div></div>
+    <div class="insight-card" style="border-top-color:#2A78D6"><div class="ic-num" style="color:#1B3A7C">📍 Insight 04 — Segmentasi Kritis</div><h4>Kantor Pusat &amp; Pegawai 4–6 Tahun: Dua Zona Risiko Tertinggi</h4><p>Gap 0,16 poin EEI antara Pusat (2,81/70,25%) dan Perwakilan (2,97/74,19%). Pusat kesulitan di kebijakan, kompensasi, dan karir. Pegawai 4–6 tahun paling rentan — karir stagnan, ekspektasi tidak terpenuhi.</p><div class="ic-data"><strong>Kantor Pusat EEI:</strong> 2,81 vs Perwakilan: 2,97<br><strong>Pusat — Keijakan &amp; transparansi:</strong> 2,50 (batas kritis)<br><strong>4–6 thn — Prestasi &amp; karir:</strong> 2,70 (terendah antar masa kerja)</div><div class="insight-seg"><span class="seg-tag" style="background:#EAF2FD;color:#1B3A7C">45 orang di Kantor Pusat</span><span class="seg-tag" style="background:#EAF2FD;color:#1B3A7C">44 orang tenure 4–6 thn</span></div></div>
+    <div class="insight-card" style="border-top-color:#C9922E"><div class="ic-num" style="color:#935116">📈 Insight 05 — Perlu Diatasi</div><h4>Transparansi &amp; Kebijakan: Kepercayaan yang Terkikis Pelan-Pelan</h4><p>Keijakan &amp; transparansi mendapat 90 pain point mention. Pegawai tidak keberatan kebijakan yang berat asal dilibatkan — yang terjadi justru sebaliknya: keputusan sering datang mendadak dan top-down tanpa ruang diskusi.</p><div class="ic-data"><strong>Skor:</strong> 2,85 / 4,00 · <strong>Pain point:</strong> 90 mention<br><strong>KTO1 (kebijakan partisipatif):</strong> 2,73<br><strong>Kantor Pusat:</strong> 2,50 (batas kritis)</div><div class="insight-seg"><span class="seg-tag" style="background:#FEF5E7;color:#935116">Pusat: skor kritis 2,50</span><span class="seg-tag" style="background:#F0F4F9;color:#3A4A5C">Isu kepercayaan ke manajemen</span></div></div>
+    <div class="insight-card" style="border-top-color:#1A8A52"><div class="ic-num" style="color:#1A6B3A">✨ Insight 06 — Modal Kuat yang Harus Dijaga</div><h4>Misi, Nilai Islami &amp; Kekeluargaan: Faktor Retensi Terkuat IZI</h4><p>IZI punya keunggulan yang sulit ditiru: pegawai merasa pekerjaannya bermakna. Skor Akuntabilitas publik &amp; dampak sosial tertinggi (3,21), budaya Islami menjadi strength terbanyak disebut (108 mention).</p><div class="ic-data"><strong>Akuntabilitas publik &amp; dampak sosial:</strong> 3,21 / 4,00<br><strong>AKD04 (kontribusi misi kemanusiaan):</strong> 3,34 — tertinggi survei<br><strong>Budaya Islami &amp; nilai:</strong> 108 strength mention</div><div class="insight-seg"><span class="seg-tag" style="background:#D5F0E3;color:#1A6B3A">78% rasa berkontribusi nyata</span><span class="seg-tag" style="background:#D5F0E3;color:#1A6B3A">Kekuatan retensi utama</span></div></div>
+  </div>
+</div>
+
+<!-- ===== S7: TRIANGULASI ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div><div class="sec-title">Triangulasi Kuantitatif &amp; Kualitatif</div><div class="sec-desc">Status prioritas berdasarkan skor survei dan frekuensi suara pegawai (pain, improvement, strength)</div></div>
+  </div>
+  <div class="card">
+    <h3>Matriks Triangulasi — Skor Variabel × Employee Voice</h3>
+    <p class="sub">Pain Point = masalah yang dirasakan · Improvement = hal yang diminta diperbaiki · Strength = hal yang diapresiasi</p>
+    <div class="tri-scroll">
+      <table class="tri-table">
+        <thead>
+          <tr><th>Tema/Area</th><th>Dimensi Kuantitatif</th><th style="text-align:center">Skor</th><th style="text-align:center">Pain</th><th style="text-align:center">Improve</th><th style="text-align:center">Strength</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Psychological Safety</td><td>Keamanan psikologis untuk berpendapat</td><td style="text-align:center;font-weight:700;color:#A93226">2,64</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td><span class="status-tag st-watch">MONITOR STRUKTURAL</span></td></tr>
+          <tr><td>Compensation</td><td>Kompensasi dan fasilitas kerja</td><td style="text-align:center;font-weight:700;color:#D97A1A">2,76</td><td style="text-align:center">66</td><td style="text-align:center">88</td><td style="text-align:center">29</td><td><span class="status-tag st-urgent">PRIORITAS TINGGI</span></td></tr>
+          <tr><td>Career Development</td><td>Prestasi dan peluang untuk maju</td><td style="text-align:center;font-weight:700;color:#D97A1A">2,81</td><td style="text-align:center">38</td><td style="text-align:center">56</td><td style="text-align:center">—</td><td><span class="status-tag st-fix">PRIORITAS PERBAIKAN</span></td></tr>
+          <tr><td>Workload</td><td>Beban kerja, kesehatan mental, dan keselamatan kerja</td><td style="text-align:center;font-weight:700;color:#D97A1A">2,87</td><td style="text-align:center">165</td><td style="text-align:center">56</td><td style="text-align:center">—</td><td><span class="status-tag st-fix">PRIORITAS PERBAIKAN</span></td></tr>
+          <tr><td>Policy &amp; Governance</td><td>Keijakan &amp; transparansi organisasi</td><td style="text-align:center;font-weight:700;color:#D97A1A">2,85</td><td style="text-align:center">90</td><td style="text-align:center">36</td><td style="text-align:center">19</td><td><span class="status-tag st-fix">PRIORITAS PERBAIKAN</span></td></tr>
+          <tr><td>Recognition</td><td>Apresiasi, penghargaan dan pengakuan</td><td style="text-align:center;font-weight:700;color:#C9922E">2,90</td><td style="text-align:center">11</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td><span class="status-tag st-watch">MONITOR</span></td></tr>
+          <tr><td>Leadership</td><td>Kepemimpinan dan kepercayaan pada manajemen puncak</td><td style="text-align:center;font-weight:700;color:#C9922E">2,98</td><td style="text-align:center">21</td><td style="text-align:center">8</td><td style="text-align:center">—</td><td><span class="status-tag st-watch">MONITOR</span></td></tr>
+          <tr><td>Technology</td><td>Teknologi informasi</td><td style="text-align:center;font-weight:700;color:#C9922E">2,96</td><td style="text-align:center">19</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td><span class="status-tag st-watch">MONITOR</span></td></tr>
+          <tr><td>Communication</td><td>Hubungan dengan atasan, rekan kerja, dan sesama pegawai</td><td style="text-align:center;font-weight:700;color:#1A6B3A">3,05</td><td style="text-align:center">74</td><td style="text-align:center">22</td><td style="text-align:center">113</td><td><span class="status-tag st-keep">KEKUATAN</span></td></tr>
+          <tr><td>Budaya Islami</td><td>Kesesuaian nilai, budaya, dan kepatuhan syariah</td><td style="text-align:center;font-weight:700;color:#1A6B3A">3,02</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">108</td><td><span class="status-tag st-keep">KEKUATAN</span></td></tr>
+          <tr><td>Human Resource</td><td>Tanggung jawab pekerjaan dan karakteristik pekerjaan</td><td style="text-align:center;font-weight:700;color:#1A6B3A">3,08</td><td style="text-align:center">63</td><td style="text-align:center">114</td><td style="text-align:center">22</td><td><span class="status-tag st-keep">PERTAHANKAN &amp; MONITOR</span></td></tr>
+          <tr><td>Misi &amp; Dampak</td><td>Akuntabilitas publik, kepercayaan donatur, dan dampak sosial</td><td style="text-align:center;font-weight:700;color:#1A6B3A">3,21</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">53</td><td><span class="status-tag st-keep">KEKUATAN</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px;background:#F8FAFC;border-radius:8px;padding:12px 16px;font-size:12.5px;color:#3A4A5C;line-height:1.65"><strong>Catatan:</strong> Keamanan psikologis berstatus "Monitor Struktural" meski skor terendah karena tidak muncul dalam pain/improvement mention — bukan berarti bukan masalah, justru sebaliknya. Pegawai tidak berani menuliskan keluhannya, yang menjadikan masalah ini lebih serius dari yang terlihat di angka.</div>
+  </div>
+</div>
+
+<!-- ===== S8: PRIORITY MATRIX ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div><div class="sec-title">Matriks Prioritas</div><div class="sec-desc">Pemetaan 12 variabel berdasarkan skor kepuasan dan intensitas employee voice</div></div>
+  </div>
+  <div class="matrix-card">
+    <h3 style="font-size:14.5px;font-weight:600;margin-bottom:4px">Scatter Plot: Skor Variabel vs. Frekuensi Employee Voice (Pain + Improvement Mention)</h3>
+    <p style="font-size:12px;color:#9AACBF;margin-bottom:14px">Semakin kiri = skor makin rendah · Semakin atas = makin banyak bersuara · Ukuran titik ∝ total mention</p>
+    <div style="position:relative;height:320px"><canvas id="matrixChart"></canvas></div>
+  </div>
+  <div class="quadrant-grid">
+    <div class="quad-box" style="background:#FFF8F7;border-color:#CC3A3A"><div class="qb-title" style="color:#A93226">Intervensi Segera</div><ul><li><span>▶</span><span><strong>Kompensasi dan fasilitas kerja</strong> — skor 2,76, voice 154 mention. Tidak bisa ditunda lagi.</span></li><li><span>▶</span><span><strong>Keamanan psikologis untuk berpendapat</strong> — skor terendah (2,64), pegawai tidak berani bersuara secara eksplisit.</span></li></ul></div>
+    <div class="quad-box" style="background:#FFF9F1;border-color:#D97A1A"><div class="qb-title" style="color:#935116">Prioritas Perbaikan</div><ul><li><span>▶</span><span><strong>Beban kerja, kesehatan mental &amp; keselamatan</strong> — 165 pain mention. Redistribusi SDM diperlukan segera.</span></li><li><span>▶</span><span><strong>Keijakan &amp; transparansi</strong> — 90 pain mention. Proses partisipatif harus jadi standar baru.</span></li><li><span>▶</span><span><strong>Prestasi dan peluang untuk maju</strong> — skor 2,81, 94 total voice dari mid-tenure.</span></li></ul></div>
+    <div class="quad-box" style="background:#F4FBF7;border-color:#1A8A52"><div class="qb-title" style="color:#1A6B3A">Pertahankan &amp; Perkuat</div><ul><li><span>▶</span><span><strong>Akuntabilitas publik &amp; dampak sosial</strong> — skor tertinggi (3,21). Terus perkuat transparansi ZIS.</span></li><li><span>▶</span><span><strong>Hubungan atasan, rekan kerja &amp; sesama</strong> — 113 strength mention. Lem sosial penjaga kohesi.</span></li><li><span>▶</span><span><strong>Kesesuaian nilai &amp; budaya Islami</strong> — 108 strength mention. Diferensiasi utama IZI.</span></li></ul></div>
+    <div class="quad-box" style="background:#F4F8FD;border-color:#2A78D6"><div class="qb-title" style="color:#1B3A7C">Monitor Berkala</div><ul><li><span>▶</span><span><strong>Kepemimpinan</strong> — persepsi Gen Z (2,96) vs Gen X (3,26) perlu dijembatani komunikasi terbuka.</span></li><li><span>▶</span><span><strong>Teknologi informasi</strong> — skor 2,96, aman tapi 19 pain mention tentang sistem error.</span></li><li><span>▶</span><span><strong>Apresiasi &amp; penghargaan</strong> — skor 2,90, mekanisme perlu lebih objektif dan merata.</span></li></ul></div>
+  </div>
+  <div class="narrative"><h4>Catatan Strategis: Lima Isu Utama Adalah Satu Sistem</h4><p>Kompensasi, beban kerja, karir, kebijakan, dan psychological safety bukan masalah yang berdiri sendiri — mereka saling memperkuat dalam satu lingkaran frustrasi. Pegawai yang kelelahan tidak bisa berkembang; yang tidak berkembang merasa kompensasinya tidak sepadan; yang tidak dihargai akhirnya tidak berani berpendapat. Penanganan efektif harus memandang kelimanya sebagai satu ekosistem employee experience.</p></div>
+</div>
+
+<!-- ===== S9: REKOMENDASI ===== -->
+<div class="sec">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div><div class="sec-title">Rekomendasi Strategis</div><div class="sec-desc">Lima langkah aksi berdasarkan temuan triangulasi — terurut berdasarkan urgensi dan dampak</div></div>
+  </div>
+  <div class="reko-list">
+    <div class="reko-card"><div class="reko-num" style="background:#CC3A3A">01</div><div class="reko-body"><h4>Bangun Budaya Speak-Up yang Aman dan Terstruktur</h4><div class="reko-time" style="background:#FDEDEC;color:#A93226">Jangka Pendek · 0–3 Bulan</div><p>Psychological safety yang rendah (2,64) bukan masalah karakter pegawai — ini masalah sistem. Selama tidak ada mekanisme yang menjamin keamanan pegawai untuk bersuara, budaya diam akan terus berlanjut dan masalah nyata tidak akan terdeteksi tepat waktu.</p><ul><li>Buat kanal feedback anonim yang terverifikasi dan direspons secara transparan</li><li>Terapkan forum "town hall" reguler di mana direksi mendengarkan langsung</li><li>Latih atasan dalam teknik active listening dan respons non-defensif terhadap kritik</li><li>Komunikasikan perlindungan eksplisit terhadap pegawai yang menyampaikan masukan</li></ul><div class="reko-evidence">📊 KPB02 = 2,44 · 49% ragu menyampaikan kritik · Gen X 2,69 · Gen Y 2,63 · Gen Z 2,65</div></div></div>
+    <div class="reko-card"><div class="reko-num" style="background:#D97A1A">02</div><div class="reko-body"><h4>Review Menyeluruh Sistem Kompensasi &amp; Redistribusi Beban Kerja</h4><div class="reko-time" style="background:#FEF5E7;color:#935116">Jangka Pendek-Menengah · 0–6 Bulan</div><p>Kompensasi (2,76) dan beban kerja (2,87) saling terkait: pegawai bekerja lebih keras namun tidak merasakan kompensasi yang sepadan. Keduanya perlu ditangani bersamaan agar solusi tidak setengah-setengah.</p><ul><li>Audit struktur gaji seluruh jabatan — pastikan setara UMR/UMK regional</li><li>Tetapkan mekanisme kenaikan gaji berkala yang transparan dan berbasis kinerja</li><li>Analisis beban kerja per divisi — identifikasi unit understaff dan redistribusi</li><li>Prioritaskan Kantor Pusat: kompensasi 2,59 dan kebijakan 2,50 hampir di zona kritis</li></ul><div class="reko-evidence">📊 Kompensasi 2,76 · Pain 66 mention · Improvement 88 mention · Burnout 43% · KFK04 = 2,54</div></div></div>
+    <div class="reko-card"><div class="reko-num" style="background:#C9922E">03</div><div class="reko-body"><h4>Perjelas Jalur Karir &amp; Percepat Pengembangan Kompetensi</h4><div class="reko-time" style="background:#FEF5E7;color:#935116">Jangka Menengah · 3–9 Bulan</div><p>Pegawai 4–6 tahun adalah kelompok paling rentan resign bukan karena tidak loyal, melainkan karena tidak melihat masa depan yang jelas. Tanpa roadmap karir yang konkret, mereka akan terus bertanya-tanya — dan pada titik tertentu, mencari jawaban di tempat lain.</p><ul><li>Susun dan publikasikan career path yang konkret dengan syarat dan timeline objektif</li><li>Pastikan promosi didasarkan pada kriteria kinerja terukur, bukan faktor subjektif</li><li>Luncurkan pelatihan terstruktur: minimal 1 pelatihan substantif per kuartal per pegawai</li><li>Desain program mentoring formal: pegawai senior (Gen X, &gt;7 tahun) mentori mid-tenure</li></ul><div class="reko-evidence">📊 Prestasi &amp; karir 2,81 · 4–6 thn 2,70 (terendah) · Pusat 2,63 · Improvement demand 56 mention</div></div></div>
+    <div class="reko-card"><div class="reko-num" style="background:#2A78D6">04</div><div class="reko-body"><h4>Perbaiki Tata Kelola Kebijakan &amp; Jembatani Gap Pusat–Perwakilan</h4><div class="reko-time" style="background:#EAF2FD;color:#1B3A7C">Jangka Menengah · 3–12 Bulan</div><p>Gap EEI antara Kantor Pusat (2,81/70,25%) dan Perwakilan (2,97/74,19%) mencerminkan perbedaan pengalaman yang sangat nyata dalam satu organisasi. Komunikasi satu arah tidak cukup untuk menjembatani perbedaan ini.</p><ul><li>Terapkan prinsip musyawarah inklusif sebelum implementasi kebijakan baru</li><li>Tetapkan SLA komunikasi kebijakan: minimum 2 minggu sebelum berlaku</li><li>Percepat integrasi sistem digital — error dan duplikasi membebani produktivitas</li><li>Evaluasi proporsionalitas beban dan fasilitas kerja antara Pusat dan Perwakilan</li></ul><div class="reko-evidence">📊 Keijakan 2,85 · Pusat 2,50 (batas kritis) · Pain 90 mention · Gap EEI Pusat-Perw: 0,16 poin</div></div></div>
+    <div class="reko-card"><div class="reko-num" style="background:#1A8A52">05</div><div class="reko-body"><h4>Rawat &amp; Investasikan Kekuatan yang Sudah Dimiliki IZI</h4><div class="reko-time" style="background:#D5F0E3;color:#1A6B3A">Berkelanjutan — Jangan Direduksi</div><p>IZI punya keunggulan yang jauh lebih sulit ditiru kompetitor: pegawai yang percaya pada misi dan merasakan makna di setiap pekerjaannya. Kekuatan ini tumbuh dari konsistensi dan harus dirawat — tidak boleh dikorbankan demi efisiensi jangka pendek.</p><ul><li>Pertahankan program pembinaan ruhiyah (liqo, kajian pekanan, dzikir pagi)</li><li>Ceritakan dampak nyata program ZIS secara rutin kepada seluruh pegawai</li><li>Jadikan budaya Islami dan kekeluargaan sebagai narasi utama employer branding</li><li>Kenali dan apresiasi pegawai penjaga budaya — aset strategis yang tak terlihat di laporan keuangan</li></ul><div class="reko-evidence">📊 Akuntabilitas &amp; dampak sosial 3,21 · AKD04 = 3,34 (tertinggi) · Budaya Islami 108 strength mention</div></div></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<footer>
+  <div>Executive Summary — Survei Kepuasan &amp; Experience Pegawai LAZNAS IZI 2026 &nbsp;·&nbsp; <strong>©2026 Divisi SRD (System, Research &amp; Development) LAZNAS IZI</strong></div>
+  <div>N = 205 responden valid &nbsp;·&nbsp; EEI 2,93/4,00 = 73,25% &nbsp;·&nbsp; Konfidensial</div>
+</footer>
+
+<script>
+
+// DONUT CHARTS
+function donut(id,data,colors){
+  new Chart(document.getElementById(id),{
+    type:'doughnut',
+    data:{datasets:[{data,backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:false,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}%`}}},cutout:'60%',animation:{duration:0}}
+  });
+}
+donut('genderChart',[51.7,48.3],['#1B3A5C','#C9922E']);
+donut('genDemoChart',[53.7,37.6,8.8],['#1B3A5C','#C9922E','#1A8A52']);
+donut('tenureDemoChart',[40.0,24.9,21.5,13.7],['#1B3A5C','#C9922E','#1A8A52','#9AACBF']);
+donut('lokasiDemoChart',[78.0,22.0],['#1B3A5C','#C9922E']);
+donut('eduChart',[73.2,10.7,8.3,7.8],['#1B3A5C','#C9922E','#1A8A52','#9AACBF']);
+
+// DIM BAR CHART
+const dims=[
+  {label:'Akuntabilitas publik, kepercayaan donatur, dan dampak sosial',score:3.205},
+  {label:'Tanggung jawab pekerjaan dan karakteristik pekerjaan',score:3.076},
+  {label:'Hubungan dengan atasan, rekan kerja, dan sesama pegawai',score:3.045},
+  {label:'Kesesuaian nilai, budaya, dan kepatuhan syariah',score:3.021},
+  {label:'Kepemimpinan dan kepercayaan pada manajemen puncak',score:2.976},
+  {label:'Teknologi informasi',score:2.957},
+  {label:'Apresiasi, penghargaan dan pengakuan',score:2.901},
+  {label:'Beban kerja, kesehatan mental, dan keselamatan kerja',score:2.872},
+  {label:'Keijakan & transparansi organisasi',score:2.845},
+  {label:'Prestasi dan peluang untuk maju',score:2.812},
+  {label:'Kompensasi dan fasilitas kerja',score:2.761},
+  {label:'Keamanan psikologis untuk berpendapat',score:2.644},
+];
+function dc(s){return s>=3.0?'#1A8A52':s>=2.5?'#C9922E':'#CC3A3A';}
+new Chart(document.getElementById('dimBarChart'),{
+  type:'bar',
+  data:{labels:dims.map(d=>d.label),datasets:[{data:dims.map(d=>d.score),backgroundColor:dims.map(d=>dc(d.score)),borderRadius:4,borderSkipped:false}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(2)} / 4,00 (${(c.raw/4*100).toFixed(2)}%)`}}},
+    scales:{x:{min:2.0,max:3.5,ticks:{font:{size:10.5},callback:v=>v.toFixed(2)},grid:{color:'#F0F4F9'},border:{display:false}},y:{ticks:{font:{size:11},color:'#3A4A5C'},grid:{display:false},border:{display:false}}},animation:{duration:0}},
+  plugins:[{afterDraw(chart){
+    const ctx=chart.ctx,xS=chart.scales.x,x=xS.getPixelForValue(2.93);
+    ctx.save();ctx.setLineDash([4,4]);ctx.strokeStyle='#C9922E';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(x,chart.chartArea.top);ctx.lineTo(x,chart.chartArea.bottom);ctx.stroke();
+    ctx.fillStyle='#C9922E';ctx.font='bold 10px Segoe UI';ctx.textAlign='left';
+    ctx.fillText('EEI 2,93',x+4,chart.chartArea.top+11);ctx.restore();
+    chart.data.datasets[0].data.forEach((val,i)=>{
+      const meta=chart.getDatasetMeta(0),bar=meta.data[i];
+      ctx.fillStyle='#1A2741';ctx.font='bold 11px Segoe UI';ctx.textAlign='left';
+      ctx.fillText(`${val.toFixed(2)} (${(val/4*100).toFixed(1)}%)`,bar.x+5,bar.y+4);
+    });
+  }}]
+});
+
+// TREND CHART
+new Chart(document.getElementById('trendChart'),{
+  type:'line',
+  data:{
+    labels:['2024\n(Skala 1–5)','2025\n(Skala 1–5)','2026\n(Skala 1–4)'],
+    datasets:[{
+      label:'Indeks Kepuasan (%)',
+      data:[77.11,75.77,73.25],
+      borderColor:'#1B3A5C',backgroundColor:'rgba(27,58,92,.08)',
+      borderWidth:3,pointRadius:8,pointHoverRadius:10,
+      pointBackgroundColor:['#1A8A52','#C9922E','#D97A1A'],
+      pointBorderColor:'#fff',pointBorderWidth:2,
+      fill:true,tension:0.3
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:c=>`Indeks Kepuasan: ${c.raw}%`}}
+    },
+    scales:{
+      y:{min:68,max:80,ticks:{font:{size:11},color:'#7A8BA8',callback:v=>v+'%'},grid:{color:'#F0F4F9'},border:{display:false}},
+      x:{ticks:{font:{size:11},color:'#3A4A5C'},grid:{display:false},border:{display:false}}
+    },
+    animation:{duration:0}
+  },
+  plugins:[{afterDraw(chart){
+    const ctx=chart.ctx;
+    chart.data.datasets[0].data.forEach((val,i)=>{
+      const meta=chart.getDatasetMeta(0),pt=meta.data[i];
+      ctx.fillStyle='#1A2741';ctx.font='bold 13px Segoe UI';ctx.textAlign='center';
+      ctx.fillText(val+'%',pt.x,pt.y-16);
+    });
+    // Draw trend annotation
+    const meta=chart.getDatasetMeta(0);
+    const p0=meta.data[0],p2=meta.data[2];
+    ctx.fillStyle='#CC3A3A';ctx.font='11px Segoe UI';ctx.textAlign='center';
+    ctx.fillText('▼ 3,86 poin (3 thn)',(p0.x+p2.x)/2,chart.chartArea.top+16);
+  }}]
+});
+
+// RADAR GEN
+new Chart(document.getElementById('genRadar'),{
+  type:'bar',
+  data:{labels:['Gen X\n(n=18)','Gen Z\n(n=77)','Gen Y\n(n=110)'],datasets:[{data:[76.96,73.44,72.63],backgroundColor:['#1A8A52','#C9922E','#D97A1A'],borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(2)}%`}}},
+    scales:{y:{min:68,max:80,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'#F0F4F9'},border:{display:false}},x:{ticks:{font:{size:10}},grid:{display:false},border:{display:false}}},animation:{duration:0}},
+  plugins:[{afterDraw(chart){
+    chart.data.datasets[0].data.forEach((val,i)=>{
+      const meta=chart.getDatasetMeta(0),bar=meta.data[i];
+      chart.ctx.fillStyle='#1A2741';chart.ctx.font='bold 11px Segoe UI';chart.ctx.textAlign='center';
+      chart.ctx.fillText(val.toFixed(2)+'%',bar.x,bar.y-6);
+    });
+  }}]
+});
+
+// BAR LOKASI
+new Chart(document.getElementById('lokasiBar'),{
+  type:'bar',
+  data:{labels:['Perwakilan\n(n=160)','Kantor Pusat\n(n=45)'],datasets:[{data:[74.19,70.25],backgroundColor:['#1A8A52','#CC3A3A'],borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(2)}%`}}},
+    scales:{y:{min:65,max:80,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'#F0F4F9'},border:{display:false}},x:{ticks:{font:{size:10}},grid:{display:false},border:{display:false}}},animation:{duration:0}},
+  plugins:[{afterDraw(chart){
+    chart.data.datasets[0].data.forEach((val,i)=>{
+      const meta=chart.getDatasetMeta(0),bar=meta.data[i];
+      chart.ctx.fillStyle='#1A2741';chart.ctx.font='bold 11px Segoe UI';chart.ctx.textAlign='center';
+      chart.ctx.fillText(val.toFixed(2)+'%',bar.x,bar.y-6);
+    });
+  }}]
+});
+
+// BAR TENURE
+new Chart(document.getElementById('tenureBar'),{
+  type:'bar',
+  data:{labels:['1–3 Thn\n(n=51)','<1 Thn\n(n=28)','>7 Thn\n(n=82)','4–6 Thn\n(n=44)'],datasets:[{data:[75.07,73.62,72.87,71.90],backgroundColor:['#1A8A52','#2A78D6','#C9922E','#CC3A3A'],borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(2)}%`}}},
+    scales:{y:{min:68,max:78,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'#F0F4F9'},border:{display:false}},x:{ticks:{font:{size:9.5}},grid:{display:false},border:{display:false}}},animation:{duration:0}},
+  plugins:[{afterDraw(chart){
+    chart.data.datasets[0].data.forEach((val,i)=>{
+      const meta=chart.getDatasetMeta(0),bar=meta.data[i];
+      chart.ctx.fillStyle='#1A2741';chart.ctx.font='bold 10.5px Segoe UI';chart.ctx.textAlign='center';
+      chart.ctx.fillText(val.toFixed(2)+'%',bar.x,bar.y-5);
+    });
+  }}]
+});
+
+// HEATMAP
+const vars12=[
+  'Keijakan & transparansi organisasi',
+  'Kesesuaian nilai, budaya, dan kepatuhan syariah',
+  'Keamanan psikologis untuk berpendapat',
+  'Kepemimpinan dan kepercayaan pada manajemen puncak',
+  'Hubungan dengan atasan, rekan kerja, dan sesama pegawai',
+  'Beban kerja, kesehatan mental, dan keselamatan kerja',
+  'Kompensasi dan fasilitas kerja',
+  'Teknologi informasi',
+  'Tanggung jawab pekerjaan dan karakteristik pekerjaan',
+  'Prestasi dan peluang untuk maju',
+  'Apresiasi, penghargaan dan pengakuan',
+  'Akuntabilitas publik, kepercayaan donatur, dan dampak sosial',
+];
+const heatVals=[
+  [2.942,2.498,2.949,2.899,2.789,2.805,3.024,2.819,2.839],
+  [3.080,2.811,3.000,3.152,3.006,2.954,3.153,2.961,3.075],
+  [2.641,2.656,2.625,2.676,2.636,2.634,2.694,2.632,2.649],
+  [3.027,2.793,3.000,3.052,2.917,2.951,3.259,2.939,2.961],
+  [3.051,3.025,3.131,3.131,2.977,2.999,3.160,3.010,3.068],
+  [2.892,2.800,2.839,2.925,2.850,2.861,3.017,2.850,2.869],
+  [2.810,2.587,2.650,2.792,2.705,2.810,2.933,2.782,2.691],
+  [2.971,2.907,2.958,3.049,2.909,2.925,3.037,2.911,3.004],
+  [3.075,3.081,3.024,3.137,3.061,3.065,3.250,3.047,3.078],
+  [2.862,2.635,2.847,2.860,2.698,2.831,2.984,2.787,2.807],
+  [2.958,2.696,2.929,2.980,2.712,2.943,3.056,2.885,2.887],
+  [3.245,3.061,3.259,3.328,3.148,3.140,3.292,3.166,3.240],
+];
+function hcClass(v){return v>=3.00?'hc-high':v>=2.75?'hc-mid':v>=2.50?'hc-low':'hc-crit';}
+const tbody=document.getElementById('heatBody');
+vars12.forEach((vname,i)=>{
+  const row=heatVals[i];
+  tbody.innerHTML+=`<tr>
+    <td title="${vname}">${vname.length>32?vname.substring(0,32)+'…':vname}</td>
+    ${row.map(v=>`<td><span class="heat-cell ${hcClass(v)}">${v.toFixed(2)}</span></td>`).join('')}
+  </tr>`;
+});
+
+// PRIORITY MATRIX
+const matData=[
+  {x:2.845,y:126,r:11,label:'Keijakan & transparansi',color:'#D97A1A'},
+  {x:3.021,y:0,r:7,label:'Kesesuaian nilai & budaya',color:'#1A8A52'},
+  {x:2.644,y:0,r:6,label:'Keamanan psikologis',color:'#CC3A3A'},
+  {x:2.976,y:29,r:7,label:'Kepemimpinan',color:'#2A78D6'},
+  {x:3.045,y:96,r:10,label:'Hubungan atasan & rekan',color:'#1A8A52'},
+  {x:2.872,y:221,r:15,label:'Beban kerja',color:'#D97A1A'},
+  {x:2.761,y:154,r:13,label:'Kompensasi & fasilitas',color:'#CC3A3A'},
+  {x:2.957,y:19,r:7,label:'Teknologi informasi',color:'#2A78D6'},
+  {x:3.076,y:177,r:14,label:'Tanggung jawab pekerjaan',color:'#1A8A52'},
+  {x:2.812,y:94,r:10,label:'Prestasi & peluang maju',color:'#D97A1A'},
+  {x:2.901,y:11,r:6,label:'Apresiasi & penghargaan',color:'#2A78D6'},
+  {x:3.205,y:0,r:8,label:'Akuntabilitas & dampak',color:'#1A8A52'},
+];
+new Chart(document.getElementById('matrixChart'),{
+  type:'bubble',
+  data:{datasets:matData.map(d=>({label:d.label,data:[{x:d.x,y:d.y,r:d.r}],backgroundColor:d.color+'CC',borderColor:d.color,borderWidth:2}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>`${matData[c.datasetIndex].label} — Skor: ${c.raw.x.toFixed(2)}, Voice: ${c.raw.y}`}}},
+    scales:{x:{min:2.4,max:3.4,title:{display:true,text:'Skor Variabel (Skala 1–4)',font:{size:11},color:'#7A8BA8'},ticks:{font:{size:10.5},callback:v=>v.toFixed(2)},grid:{color:'#F0F4F9'},border:{display:false}},
+      y:{min:-20,max:260,title:{display:true,text:'Frekuensi Employee Voice (Mention)',font:{size:11},color:'#7A8BA8'},ticks:{font:{size:10.5}},grid:{color:'#F0F4F9'},border:{display:false}}},animation:{duration:0}},
+  plugins:[{afterDraw(chart){
+    const ctx=chart.ctx,xS=chart.scales.x,yS=chart.scales.y;
+    const xM=xS.getPixelForValue(2.93),yM=yS.getPixelForValue(100);
+    ctx.save();ctx.setLineDash([5,4]);ctx.strokeStyle='#9AACBF';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(xM,chart.chartArea.top);ctx.lineTo(xM,chart.chartArea.bottom);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(chart.chartArea.left,yM);ctx.lineTo(chart.chartArea.right,yM);ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(204,58,58,.1)';ctx.fillRect(chart.chartArea.left,chart.chartArea.top,xM-chart.chartArea.left,yM-chart.chartArea.top);
+    ctx.fillStyle='rgba(26,138,82,.07)';ctx.fillRect(xM,chart.chartArea.top,chart.chartArea.right-xM,yM-chart.chartArea.top);
+    ctx.fillStyle='rgba(201,146,46,.07)';ctx.fillRect(chart.chartArea.left,yM,xM-chart.chartArea.left,chart.chartArea.bottom-yM);
+    ctx.fillStyle='rgba(42,120,214,.05)';ctx.fillRect(xM,yM,chart.chartArea.right-xM,chart.chartArea.bottom-yM);
+    ctx.font='bold 10px Segoe UI';ctx.textAlign='center';
+    ctx.fillStyle='#A93226';ctx.fillText('INTERVENSI SEGERA',chart.chartArea.left+(xM-chart.chartArea.left)/2,chart.chartArea.top+15);
+    ctx.fillStyle='#1A6B3A';ctx.fillText('PERTAHANKAN',xM+(chart.chartArea.right-xM)/2,chart.chartArea.top+15);
+    ctx.fillStyle='#935116';ctx.fillText('PRIORITAS PERBAIKAN',chart.chartArea.left+(xM-chart.chartArea.left)/2,chart.chartArea.bottom-8);
+    ctx.fillStyle='#1B3A7C';ctx.fillText('MONITOR',xM+(chart.chartArea.right-xM)/2,chart.chartArea.bottom-8);
+    ctx.restore();
+    chart.data.datasets.forEach((ds,i)=>{
+      const meta=chart.getDatasetMeta(i),pt=meta.data[0];
+      ctx.fillStyle='#1A2741';ctx.font='9.5px Segoe UI';ctx.textAlign='center';
+      ctx.fillText(matData[i].label.split(' ').slice(0,2).join(' '),pt.x,pt.y-matData[i].r-4);
+    });
+  }}]
+});
+
+</script>
+</body>
+</html>
