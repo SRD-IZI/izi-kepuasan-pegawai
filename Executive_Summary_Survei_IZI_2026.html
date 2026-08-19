@@ -47,9 +47,12 @@ img{max-width:100%;height:auto}
 
 /* ===== SECTION 1: DEMOGRAFI ===== */
 .demo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.demo-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.demo-grid-2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.demo-stat-v{padding:14px 16px;background:#fff;border-radius:10px;border:1px solid #E4EAF2;flex:1}
 .demo-card{background:#fff;border-radius:12px;padding:16px 12px;border:1px solid #E4EAF2;text-align:center}
 .demo-card h4{font-size:11.5px;font-weight:600;color:#7A8BA8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
-.demo-chart-wrap{width:100px;height:100px;margin:0 auto}
+.demo-chart-wrap{width:120px;height:120px;margin:0 auto;position:relative}
 .demo-legend{margin-top:10px;font-size:11px;text-align:left}
 .demo-legend div{display:flex;align-items:center;gap:6px;padding:2px 0;color:#3A4A5C}
 .dleg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
@@ -185,6 +188,8 @@ footer strong{color:rgba(255,255,255,.9)}
 @media (max-width:1024px){
   .cover{padding:40px 36px 36px}
   .demo-grid{grid-template-columns:repeat(3,1fr)}
+  .demo-grid-3{grid-template-columns:repeat(3,1fr)}
+  .demo-grid-2{grid-template-columns:1fr 1fr 1fr}
   .eei-row{grid-template-columns:240px 1fr}
   .comp-grid{grid-template-columns:repeat(2,1fr)}
   .comp-charts{grid-template-columns:repeat(2,1fr)}
@@ -209,6 +214,8 @@ footer strong{color:rgba(255,255,255,.9)}
   .sec-title{font-size:16px}
   .sec-desc{font-size:12px}
   .demo-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .demo-grid-3{grid-template-columns:repeat(2,1fr);gap:10px}
+  .demo-grid-2{grid-template-columns:1fr 1fr;gap:10px}
   .demo-stats{grid-template-columns:1fr}
   .eei-row{grid-template-columns:1fr}
   .eei-chart-box{margin-top:0}
@@ -231,6 +238,8 @@ footer strong{color:rgba(255,255,255,.9)}
   .cover-kpi{min-width:100%;text-align:left;display:flex;align-items:center;gap:12px;padding:10px 14px}
   .ck-val{font-size:20px}
   .demo-grid{grid-template-columns:1fr 1fr}
+  .demo-grid-3{grid-template-columns:1fr 1fr}
+  .demo-grid-2{grid-template-columns:1fr}
   .main{padding:20px 14px}
 }
 </style>
@@ -269,17 +278,22 @@ footer strong{color:rgba(255,255,255,.9)}
     <div class="sec-num">1</div>
     <div><div class="sec-title">Profil Responden</div><div class="sec-desc">Gambaran demografis 205 pegawai yang berpartisipasi dalam survei</div></div>
   </div>
-  <div class="demo-grid">
-    <div class="demo-card"><h4>Jenis Kelamin</h4><div class="demo-chart-wrap"><canvas id="genderChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Pria (106)<div class="dleg-pct">51,7%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Wanita (99)<div class="dleg-pct">48,3%</div></div></div></div>
-    <div class="demo-card"><h4>Generasi</h4><div class="demo-chart-wrap"><canvas id="genDemoChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Gen Y (110)<div class="dleg-pct">53,7%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Gen Z (77)<div class="dleg-pct">37,6%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>Gen X (18)<div class="dleg-pct">8,8%</div></div></div></div>
-    <div class="demo-card"><h4>Masa Kerja</h4><div class="demo-chart-wrap"><canvas id="tenureDemoChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>&gt;7 Thn (82)<div class="dleg-pct">40,0%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>1–3 Thn (51)<div class="dleg-pct">24,9%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>4–6 Thn (44)<div class="dleg-pct">21,5%</div></div><div><div class="dleg-dot" style="background:#9AACBF"></div>&lt;1 Thn (28)<div class="dleg-pct">13,7%</div></div></div></div>
-    <div class="demo-card"><h4>Lokasi Kantor</h4><div class="demo-chart-wrap"><canvas id="lokasiDemoChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Perwakilan (160)<div class="dleg-pct">78,0%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Pusat (45)<div class="dleg-pct">22,0%</div></div></div></div>
-    <div class="demo-card"><h4>Pendidikan</h4><div class="demo-chart-wrap"><canvas id="eduChart"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Sarjana (150)<div class="dleg-pct">73,2%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>SMA/SMK (22)<div class="dleg-pct">10,7%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>Magister (17)<div class="dleg-pct">8,3%</div></div><div><div class="dleg-dot" style="background:#9AACBF"></div>Diploma (16)<div class="dleg-pct">7,8%</div></div></div></div>
+  <!-- Row 1: 3 charts -->
+  <div class="demo-grid-3">
+    <div class="demo-card"><h4>Jenis Kelamin</h4><div class="demo-chart-wrap"><canvas id="genderChart" width="120" height="120"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Pria (106)<div class="dleg-pct">51,7%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Wanita (99)<div class="dleg-pct">48,3%</div></div></div></div>
+    <div class="demo-card"><h4>Generasi</h4><div class="demo-chart-wrap"><canvas id="genDemoChart" width="120" height="120"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Gen Y (110)<div class="dleg-pct">53,7%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Gen Z (77)<div class="dleg-pct">37,6%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>Gen X (18)<div class="dleg-pct">8,8%</div></div></div></div>
+    <div class="demo-card"><h4>Masa Kerja</h4><div class="demo-chart-wrap"><canvas id="tenureDemoChart" width="120" height="120"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>&gt;7 Thn (82)<div class="dleg-pct">40,0%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>1–3 Thn (51)<div class="dleg-pct">24,9%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>4–6 Thn (44)<div class="dleg-pct">21,5%</div></div><div><div class="dleg-dot" style="background:#9AACBF"></div>&lt;1 Thn (28)<div class="dleg-pct">13,7%</div></div></div></div>
   </div>
-  <div class="demo-stats">
-    <div class="demo-stat"><div class="ds-val">87,3%</div><div class="ds-label">Hak pegawai terpenuhi (sebagian besar–seluruhnya)</div><div class="ds-sub">Sudah seluruhnya 36,1% · Sebagian besar 51,2%</div></div>
-    <div class="demo-stat"><div class="ds-val">94,1%</div><div class="ds-label">Kewajiban pegawai dipenuhi (sebagian besar–seluruhnya)</div><div class="ds-sub">Sudah seluruhnya 41,5% · Sebagian besar 52,7%</div></div>
+  <!-- Row 2: 2 charts + stats -->
+  <div class="demo-grid-2" style="margin-top:14px">
+    <div class="demo-card"><h4>Lokasi Kantor</h4><div class="demo-chart-wrap"><canvas id="lokasiDemoChart" width="120" height="120"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Perwakilan (160)<div class="dleg-pct">78,0%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>Pusat (45)<div class="dleg-pct">22,0%</div></div></div></div>
+    <div class="demo-card"><h4>Pendidikan Terakhir</h4><div class="demo-chart-wrap"><canvas id="eduChart" width="120" height="120"></canvas></div><div class="demo-legend"><div><div class="dleg-dot" style="background:#1B3A5C"></div>Sarjana (150)<div class="dleg-pct">73,2%</div></div><div><div class="dleg-dot" style="background:#C9922E"></div>SMA/SMK (22)<div class="dleg-pct">10,7%</div></div><div><div class="dleg-dot" style="background:#1A8A52"></div>Magister (17)<div class="dleg-pct">8,3%</div></div><div><div class="dleg-dot" style="background:#9AACBF"></div>Diploma (16)<div class="dleg-pct">7,8%</div></div></div></div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="demo-stat-v"><div class="ds-val">87,3%</div><div class="ds-label">Hak pegawai terpenuhi</div><div class="ds-sub">Sudah seluruhnya 36,1% · Sebagian besar 51,2%</div></div>
+      <div class="demo-stat-v"><div class="ds-val">94,1%</div><div class="ds-label">Kewajiban pegawai dipenuhi</div><div class="ds-sub">Sudah seluruhnya 41,5% · Sebagian besar 52,7%</div></div>
+    </div>
   </div>
+
   <div class="demo-note">Mayoritas responden adalah <strong>pegawai Gen Y laki-laki berpendidikan sarjana di kantor perwakilan dengan masa kerja di atas 7 tahun</strong> — profil tulang punggung operasional IZI. Komposisi gender hampir berimbang (51,7% vs 48,3%) perlu diperhatikan dalam desain kebijakan HR yang inklusif. Dari sisi pemenuhan hak, 12,7% pegawai masih merasa hak-haknya belum atau hanya sebagian kecil terpenuhi — angka yang perlu mendapat perhatian tersendiri.</div>
 </div>
 
@@ -525,10 +539,18 @@ footer strong{color:rgba(255,255,255,.9)}
 
 // DONUT CHARTS
 function donut(id,data,colors){
-  new Chart(document.getElementById(id),{
+  const canvas=document.getElementById(id);
+  if(!canvas)return;
+  new Chart(canvas,{
     type:'doughnut',
-    data:{datasets:[{data,backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},
-    options:{responsive:false,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}%`}}},cutout:'60%',animation:{duration:0}}
+    data:{datasets:[{data,backgroundColor:colors,borderWidth:2.5,borderColor:'#fff',hoverBorderWidth:3}]},
+    options:{
+      responsive:false,
+      maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+'%'}}},
+      cutout:'62%',
+      animation:{duration:600,easing:'easeOutQuart'}
+    }
   });
 }
 donut('genderChart',[51.7,48.3],['#1B3A5C','#C9922E']);
